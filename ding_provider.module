@@ -606,6 +606,15 @@ function _ding_provider_function($type, $hook, $quiet = FALSE) {
 * The PID for the faust in the data well.
 */
 function ding_provider_build_entity_id($id, $agency = -1) {
+    //Check if already is a well3 id ?
+    if (strpos($id, '-') !== FALSE)
+    {
+        return $id;
+    }
+    else
+    {
+        $id = explode(':',$id)[1];
+    }
     $ting_entity_id = FALSE;
     // Get local library faust ID range.
     $local_range = '9';
