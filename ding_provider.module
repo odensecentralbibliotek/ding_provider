@@ -613,8 +613,11 @@ function ding_provider_build_entity_id($id, $agency = -1) {
     }
     else
     {
-        $id = explode(':',$id);
-        $id = $id[1];
+        $tmp = explode(':',$id);
+        if(sizeof($tmp) >= 2)
+        {
+            $id = $tmp[1];
+        }
     }
     $ting_entity_id = FALSE;
     // Get local library faust ID range.
