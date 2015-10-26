@@ -18,7 +18,12 @@ class DingProviderLoan extends DingEntityBase {
    * Renewal failed.
    */
   const STATUS_NOT_RENEWED = 2;
-
+  
+  /**
+   * Renewal succeeded.
+   */
+  const STATUS_INT_LOAN = 3;
+  
   /**
    * Id of the reservation. Used as identifier. No assumptions are made about
    * it, however it should be a sting value suitable for values in forms and
