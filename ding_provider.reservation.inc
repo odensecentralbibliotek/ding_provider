@@ -126,7 +126,7 @@ class DingProviderReservation extends DingEntityBase {
     $this->properties['display_name'] = t('Title not available');
     
     //Check if remote loan then get title.
-    if (intval($data['order_id']) < 0) {
+    if (isset($data['order_id']) && intval($data['order_id']) < 0) {
       $ding_entity_id = explode(":", $data['ding_entity_id']);
       $result = ding_provider_invoke('availability', 'holdings', array($ding_entity_id[1]));
       if (isset($result)) {
@@ -207,20 +207,21 @@ class DingProviderReservation extends DingEntityBase {
 /**
  * Parent class for reservation errors.
  */
-class DingProviderReservationUserError extends DingProviderUserException {}
-
+class DingProviderReservationUserError extends DingProviderUserException { }
 /**
  * Exception thrown when the item is already reserved.
  */
-class DingProviderReservationExists extends DingProviderReservationUserError{
+class DingProviderReservationExists extends DingProviderReservationUserError {
   public function __construct($message = "", $code = 0) {
     if (empty($message)) {
       $message = t('"You have already reserved "@title".');
+      if ($code) {
+        $message .= t('Error message "@code."', array('@code' => $code));
+      }
     }
     parent::__construct($message);
   }
 }
-
 /**
  * The item is not available for reservation.
  */
@@ -228,18 +229,23 @@ class DingProviderReservationNotAvailable extends DingProviderReservationUserErr
   public function __construct($message = "", $code = 0) {
     if (empty($message)) {
       $message = t('"@title" is not available for reservation.');
+      if ($code) {
+        $message .= t('Error message "@code."', array('@code' => $code));
+      }
     }
     parent::__construct($message);
   }
 }
-
 /**
  * Reservation is not allowed.
  */
-class DingProviderReservationNotAllowed extends DingProviderReservationUserError{
+class DingProviderReservationNotAllowed extends DingProviderReservationUserError {
   public function __construct($message = "", $code = 0) {
     if (empty($message)) {
       $message = t("You're not allowed to reserve \"@title\".");
+      if ($code) {
+        $message .= t('Error message "@code."', array('@code' => $code));
+      }
     }
     parent::__construct($message);
   }
