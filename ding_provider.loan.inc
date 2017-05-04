@@ -78,6 +78,10 @@ class DingProviderLoan extends DingEntityBase {
   protected $notes  = DingEntityBase::NULL;
 
   /*
+   * Loan renewable status
+   */
+  protected $renewalStatusList = DingEntityBase::NULL;
+  /*
    titel
    type
    forfatter
@@ -101,6 +105,7 @@ class DingProviderLoan extends DingEntityBase {
       'renewable',
       'remote_loan',
       'notes',
+      'renewalStatusList'
     );
     $this->_populate($properties, $data);
   }
