@@ -611,6 +611,10 @@ function ding_provider_build_entity_id($id, $agency = -1) {
     {
         return $id;
     }
+    else if(strpos(strtolower($id), 'katalog') !== FALSE)
+    {
+        return $id;
+    }
     else
     {
         $tmp = explode(':',$id);
@@ -626,10 +630,7 @@ function ding_provider_build_entity_id($id, $agency = -1) {
 
   // Get agency ID.
   $local_agency = variable_get('ting_agency', '');
-  if(strpos(strtolower($id), 'katalog') !== FALSE)
-  {
-      $ting_entity_id = $local_agency . '-katalog:' . $id;
-  }
+  
   switch ($agency) {
     case $local_agency:
     case -1:
