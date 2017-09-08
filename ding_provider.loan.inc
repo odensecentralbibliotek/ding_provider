@@ -9,20 +9,26 @@
  * Class representing a loan.
  */
 class DingProviderLoan extends DingEntityBase {
-  /**
+/**
    * Renewal succeeded.
    */
   const STATUS_RENEWED = 1;
-
   /**
    * Renewal failed.
    */
   const STATUS_NOT_RENEWED = 2;
-  
   /**
-   * Renewal succeeded.
+   * Renewal requested.
    */
-  const STATUS_INT_LOAN = 3;
+  const STATUS_RENEWAL_REQUESTED = 3;
+  /**
+   * Renewal denied, maximum number of renewals reached.
+   */
+  const STATUS_RENEWAL_NUM_EXCEEDED = 4;
+  /**
+   * Renewal denied, reserved by other user.
+   */
+  const STATUS_RENEWAL_RESERVED = 5;
   
   /**
    * Id of the reservation. Used as identifier. No assumptions are made about
