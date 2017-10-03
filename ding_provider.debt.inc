@@ -34,8 +34,12 @@ class DingProviderDebt extends DingEntityBase {
    * The amount owed, floating point.
    */
   protected $amount = DingEntityBase::NULL;
-
-
+  /*
+   * Informs if the debt is payable by the current client.
+   * is normaly debts which has been invoiced.
+   */
+  protected $payableByClient = DingEntityBase::NULL;
+  
   public function __construct($id, $data = array()) {
     parent::__construct();
     $this->properties['id'] = $id;
@@ -51,6 +55,7 @@ class DingProviderDebt extends DingEntityBase {
       'amount_paid',
       'invoice_number',
       'type',
+      'payableByClient',
     );
     $this->_populate($properties, $data);
   }
