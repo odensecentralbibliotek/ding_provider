@@ -630,7 +630,7 @@ function ding_provider_build_entity_id($id, $agency = -1) {
 
   // Get agency ID.
   $local_agency = variable_get('ting_agency', '');
-  
+
   switch ($agency) {
     case $local_agency:
     case -1:
@@ -752,6 +752,14 @@ function ding_provider_build_entity_id($id, $agency = -1) {
       watchdog('ding_provider_pid', 'PID creation failed with agency (%agency) and ID (%id)', array('%agency' => $agency, '%id' => $id), WATCHDOG_ERROR);
       break;
   }
+
+    switch ($local_agency) {
+    case $local_agency:
+      if (strlen($id) == '8' && preg_match('/^5/', $id)) {
+        $ting_entity_id = $local_agency . '-katalog:' . $id;
+      }
+      break;
+    }
 
   return $ting_entity_id;
 }
