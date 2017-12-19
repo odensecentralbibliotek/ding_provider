@@ -755,7 +755,7 @@ function ding_provider_build_entity_id($id, $agency = -1) {
 
     switch ($local_agency) {
     case $local_agency:
-      if (strlen($id) == '8' && preg_match('/^5/', $id) || strlen($id) == '9' && preg_match('/^1/', $id)) {
+      if (strlen($id) == '9' && preg_match('/^1/', $id)) {
         $ting_entity_id = $local_agency . '-katalog:' . $id;
       }
       break;
